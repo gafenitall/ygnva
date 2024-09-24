@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_gafenitall_ygnva_1727161197870-pr-trigger-input-set
+  identifier: Build_gafenitall_ygnva_1727161197870prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_gafenitall_ygnva_1727161197870
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
